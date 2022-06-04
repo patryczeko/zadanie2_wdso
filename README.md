@@ -15,3 +15,6 @@ drugi commit:
 trzeci commit:
     Rozbudowanie pliku makefile o zmienne automatyczne i zdefiniowane przeze
     mnie.
+
+czwarty commit:
+    Rozbudowanie pliku makefile o reguly przyrostkow.
