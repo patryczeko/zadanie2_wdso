@@ -8,23 +8,25 @@ RM = rm -f
 CFLAGS = -c
 PROGS = Code2.o libfunc.so
 RMPROG = Code2 *.o *.so
-PATHL = /home/student/zadanie2
+PATHL = ../zadanie2
 
-.c.o:
+%.o: %.c
 	$(CC) -fPIC $(CFLAGS) $<
 
-.o:
+%.o: 
 	$(CC) $(CFLAGS) $^
 
-Code2: $(PROGS)
+%: %.o
 	$(CC) -o $@ $^ -Wl,-rpath=$(PATHL)
 
+lib%.so:
+	$(CC) -shared -o $@ $^
+
+Code2: $(PROGS)
 Code2.o: Code2.c square.h cube.h
 square.o: square.c
 cube.o: cube.c
-
 libfunc.so: cube.o square.o
-	$(CC) -shared -o $@ $^
 
 clean:
 	$(RM) $(RMPROG)
