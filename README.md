@@ -33,3 +33,7 @@ czwarty commit:
 
 piaty commit:
     Rozbudowanie pliku makefile o reguly wzorca.
+
+(EXTRA) szosty commit:
+    Rozbudowanie projektu o drzewiasta strukture katalogowa i plik makefile
+    wykorzystujacy ja, program w tej wersji nalezy uruchomic za pomoca ./bin/Code2

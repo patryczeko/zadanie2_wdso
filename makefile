@@ -6,27 +6,35 @@
 CC = gcc
 RM = rm -f
 CFLAGS = -c
-PROGS = Code2.o libfunc.so
-RMPROG = Code2 *.o *.so
-PATHL = ../zadanie2
+LIBR = libfunc.so
+LIBDIR = lib
+PROGS = Code2.o
+RMPROG = ~/zadanie2/bin/Code2 *.o ~/zadanie2/lib/*.so ~/zadanie2/include/*.gch
+PATHL = ../zadanie2/lib
+vpath %.c src
+vpath %.h include
+
+Code2: $(PROGS) $(addprefix $(LIBDIR)/, $(LIBR))
+
 
 %.o: %.c
-	$(CC) -fPIC $(CFLAGS) $<
+	$(CC) -fPIC $(CFLAGS) $^ -I./include
 
 %.o: 
 	$(CC) $(CFLAGS) $^
 
+
 %: %.o
-	$(CC) -o $@ $^ -Wl,-rpath=$(PATHL)
+	$(CC) -o ~/zadanie2/bin/$@ $^ -I./include -Wl,-rpath=$(PATHL)
 
 lib%.so:
-	$(CC) -shared -o $@ $^
+	$(CC) -shared -o ~/zadanie2/$@ $^
 
-Code2: $(PROGS)
-Code2.o: Code2.c square.h cube.h
+
 square.o: square.c
 cube.o: cube.c
-libfunc.so: cube.o square.o
+Code2.o: Code2.c square.h cube.h
+$(LIBDIR)/libfunc.so: cube.o square.o
 
 clean:
 	$(RM) $(RMPROG)
