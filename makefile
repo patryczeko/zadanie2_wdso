@@ -1,20 +1,27 @@
 #plik makefile
 
-Code2: Code2.o libfunc.so
-	gcc -o Code2 Code2.o libfunc.so -Wl,-rpath=/home/student/zadanie2
+CC = gcc
+RM = rm -f
+CFLAGS = -c
+PROGS = Code2.o libfunc.so
+RMPROG = Code2 Code2.o square.o cube.o libfunc.so square.h.gch cube.h.gch
+PATHL = /home/student/zadanie2
+
+Code2: $(PROGS)
+	$(CC) -o $@ $^ -Wl,-rpath=$(PATHL)
 
 Code2.o: Code2.c square.h cube.h
-	gcc -c Code2.c
+	$(CC) $(CFLAGS) $^
 
 square.o: square.c
-	gcc -fPIC -c square.c
+	$(CC) -fPIC $(CFLAGS) $<
 
 cube.o: cube.c
-	gcc -fPIC -c cube.c
+	$(CC) -fPIC $(CFLAGS) $<
 
 libfunc.so: cube.o square.o
-	gcc -shared -o libfunc.so cube.o square.o
+	$(CC) -shared -o $@ $^
 
-clear:
-	rm Code2 Code2.o square.o cube.o libfunc.so
+clean:
+	$(RM) $(RMPROG)
 

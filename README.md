@@ -12,3 +12,6 @@ drugi commit:
     dodanie najprostszego pliku makefile, problem z niewyszukiwaniem biblioteki
     rozwiazany za pomoca -rpath.
 
+trzeci commit:
+    Rozbudowanie pliku makefile o zmienne automatyczne i zdefiniowane przeze
+    mnie.
